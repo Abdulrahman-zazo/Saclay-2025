@@ -1,0 +1,369 @@
+.Initial-Services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px auto;
+  width: 80%;
+}
+
+.second-title {
+  color: var(--secondary);
+  font-family: var(--secondary-Font);
+  font-size: 18px;
+  margin: 0px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 2.24px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.Initial-Services h1 {
+  color: var(--primary);
+  font-family: var(--primary-font);
+  font-size: 32px;
+  margin: 5px 0px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.view-Services {
+  width: 90%;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  margin: 10px auto;
+  border-radius: 8px;
+}
+
+.btns-services {
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px;
+  text-align: center;
+  width: 30%;
+  font-family: var(--secondary-Font);
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.btn-service {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0px 20px;
+  padding: 10px 0px;
+  width: 100%;
+  cursor: pointer;
+}
+
+.btn-serviceselected {
+  margin: 0px 20px;
+  width: 100%;
+  padding: 10px 0px;
+  cursor: pointer;
+  background-color: var(--primary);
+  color: var(--white-text);
+  border-radius: 8px;
+  transition: all ease-in 0.3s;
+}
+
+.btn-service span {
+  margin-top: 10px;
+  font-size: 36px;
+  color: var(--secondary);
+}
+
+.btn-serviceselected span img {
+  margin-top: 10px;
+}
+
+.btn-serviceselected span {
+  margin-top: 10px;
+  font-size: 36px;
+  color: var(--white-text);
+}
+
+.btn-service-text {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--text) !important;
+  width: 80%;
+  margin: 10px auto;
+}
+
+.btn-service-textselected {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  color: var(--white-text) !important;
+  width: 80%;
+  margin: 10px auto;
+}
+
+.text-services {
+  font-family: var(--secondary-Font);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  width: 70%;
+  margin: 30px 20px;
+}
+
+.description-service {
+  color: var(--text);
+  font-family: var(--secondary-Font);
+  font-size: 14px;
+  width: 90%;
+  text-align: left;
+  margin: 20px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 140%;
+}
+
+.imgs-services {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+.imgs-services img {
+  width: 350px;
+  margin: 10px 0px;
+}
+
+.view-all-services {
+  display: none;
+}
+
+.text-services h2 {
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  font-family: var(--secondary-Font);
+  color: var(--black);
+}
+
+.services-grid-text-services {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.services-text-with-circle {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.services-p-text-with-circle {
+  color: var(--black);
+  margin: 5px;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 140%;
+  transition: all 0.15s ease-in 0.1s;
+}
+.services-p-text-with-circle:hover {
+  color: var(--secondary);
+}
+
+.services-icon-text-with-circle {
+  color: var(--secondary);
+  font-size: 12px;
+  margin: 5px;
+}
+
+.description-service {
+  color: var(--text);
+  font-family: var(--secondary-Font);
+  font-size: 14px;
+  width: 100%;
+  text-align: left;
+  margin: 10px;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 140%;
+}
+
+.learn-more-btn-services-position {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  justify-content: flex-end;
+}
+
+.imgs-services {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+}
+
+.imgs-services img {
+  width: 350px;
+  margin: 10px 0px;
+}
+
+.view-all-services {
+  display: none;
+}
+
+.learn-more-btn-services {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  color: var(--secondary);
+  font-family: var(--secondary-Font);
+  font-size: 14px;
+  margin: 20px;
+  text-decoration: none;
+}
+
+.learn-more-icon-services {
+  margin: 0px 10px;
+  font-size: 12px;
+}
+
+@media screen and (max-width: 900px) {
+  .view-Services {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+  }
+
+  .second-title {
+    width: 80%;
+    margin: auto;
+    font-size: 16px;
+  }
+
+  .Initial-Services h1 {
+    color: var(--primary);
+    font-family: var(--primary-font);
+    font-size: 28px;
+    margin: 5px 0px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .Initial-Services {
+    width: 100%;
+    display: block;
+    margin: 0px auto;
+  }
+
+  .text-services {
+    width: 90%;
+  }
+
+  .imgs-services {
+    display: none;
+  }
+
+  .btns-services {
+    text-align: center;
+    width: 100%;
+    font-family: var(--secondary-Font);
+  }
+
+  .btn-service {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: auto;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .view-all-services {
+    display: block;
+    width: 100%;
+  }
+  .services-grid-text-services {
+    display: grid;
+    width: 90%;
+    margin: auto;
+    grid-template-columns: repeat(1, 3fr);
+    grid-template-rows: repeat(1, 3fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 10px;
+    margin-bottom: 10px;
+    -ms-grid-row-align: center;
+  }
+  .learn-more-btn-services {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+
+  .btn-serviceselected {
+    margin: 0px 20px;
+    width: 100%;
+    padding: 10px 0px;
+    cursor: pointer;
+    background-color: var(--primary);
+    color: var(--white-text);
+    border-radius: 8px;
+    transition: all ease-in 0.3s;
+  }
+
+  .btn-service span {
+    margin-top: 10px;
+    font-size: 36px;
+    color: var(--secondary);
+  }
+
+  .btn-serviceselected span img {
+    margin-top: 10px;
+  }
+
+  .btn-serviceselected span {
+    margin-top: 10px;
+    font-size: 36px;
+    color: var(--white-text);
+  }
+
+  .btn-service-text {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    color: var(--text) !important;
+    width: 80%;
+    margin: 10px auto;
+  }
+
+  .btn-service-textselected {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    color: var(--white-text) !important;
+    width: 80%;
+    margin: 10px auto;
+  }
+
+  .Pagination {
+    margin: auto;
+  }
+}
