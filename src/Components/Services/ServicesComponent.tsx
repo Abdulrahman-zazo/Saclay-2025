@@ -1,7 +1,9 @@
-import "./ServicesComponent.css";
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { ArrowRight } from "lucide-react";
+import { IconLogo, IconLogoW } from "../../assets/Images";
 import type { Service, Specialty } from "../../Types";
+import { CircleIcon } from "../../assets/CircleIcon";
 
 function ServicesComponent({
   Specialties,
@@ -10,110 +12,96 @@ function ServicesComponent({
   Specialties: Specialty[];
   Services: Service[];
 }) {
-  //   const [text, settext] = useState({
-  //     text_1: Specialties[0]?.one_description?.substring(0, 200) || "",
-  //   });
-  //   const [servicesData, setservicesData] = useState();
-  //   const [selectedService, setSelectedService] = useState(Specialties[0]?.id || "");
+  const [selectedService, setSelectedService] = useState(
+    Specialties[0]?.id ?? 0
+  );
 
-  //   useEffect(() => {
-  //     const filteredServices = Services?.filter(
-  //       (service) => service.specialty_id === selectedService
-  //     );
-  //     setservicesData(filteredServices);
-  //   }, [selectedService]);
+  const selectedSpecialty = useMemo(
+    () => Specialties.find((s) => s.id === selectedService),
+    [selectedService, Specialties]
+  );
 
-  //   const handleServiceClick = (Specialtie) => {
-  //     setSelectedService(Specialtie.id);
-  //     settext({
-  //       text_1: Specialtie.one_description,
-  //     });
-  //   };
+  const servicesData = useMemo(
+    () =>
+      Services.filter((service) => service.specialty_id === selectedService),
+    [selectedService, Services]
+  );
 
-  return <>لحظات</>;
+  return (
+    <div className="w-[80%] px-4 py-10 max-w-7xl mx-auto" id="Services">
+      <p className="text-secondary text-sm font-bold tracking-widest uppercase text-center mb-2">
+        Des soins EN LESQUELS vous pouvez croire
+      </p>
+      <h1 className="text-primary text-3xl font-semibold text-center mb-8">
+        Nos services
+      </h1>
+
+      <div className="flex flex-col lg:flex-row gap-6 lg:gap-10">
+        {/* Sidebar buttons */}
+        <div className="w-full lg:w-1/4 border border-light-blue/50 rounded-lg p-4 flex flex-col items-center gap-2">
+          {Specialties.slice(0, 4).map((specialty) => {
+            const isSelected = selectedService === specialty.id;
+            return (
+              <button
+                key={specialty.id}
+                onClick={() => setSelectedService(specialty.id)}
+                className={`w-full flex flex-col items-center p-3 rounded-lg cursor-pointer transition-all duration-200 ${
+                  isSelected
+                    ? "bg-primary text-white"
+                    : "bg-white text-gray-700 hover:bg-gray-100"
+                }`}
+              >
+                <img
+                  src={isSelected ? IconLogoW : IconLogo}
+                  alt="icon"
+                  className="w-8 h-8 mb-2"
+                />
+                <span className={`text-sm font-medium text-center`}>
+                  {specialty.name}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Main content */}
+        <div className="flex-1">
+          <h2 className="text-xl font-semibold text-primary mb-2">
+            Le bien être de nos patients est notre priorité.
+          </h2>
+          <p className="text-gray-600 text-sm leading-relaxed mb-6">
+            {selectedSpecialty?.one_description?.substring(0, 200)}...
+          </p>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2  gap-y-4 gap-x-4 mb-6">
+            {servicesData.slice(0, 4).map((service) => (
+              <Link
+                to={`/Services/${service.id}`}
+                key={service.id}
+                onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                className="flex items-start text-gray-800 hover:text-secondary transition-colors"
+              >
+                <CircleIcon className="text-secondary mr-2" />
+
+                <span className="text-base font-medium">{service.name}</span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="flex justify-end">
+            <Link
+              to={`/spécialités/${selectedService}`}
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className="flex items-center text-sm text-secondary hover:text-primary font-medium transition-colors"
+            >
+              <span>En savoir plus</span>
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default ServicesComponent;
-
-// <div className="Initial-Services" id="Services">
-//   <p className="second-title">Des soins EN LESQUELS vous pouvez croire</p>
-//   <h1 className="first-title">Nos services</h1>
-//   <div className="view-Services">
-//     <div className="btns-services">
-//       {data?.slice(0, 4).map((Specialtie) => (
-//         <div
-//           className={`btn-service${
-//             selectedService === Specialtie.id ? "selected" : ""
-//           }`}
-//           key={Specialtie?.id}
-//           onClick={() => handleServiceClick(Specialtie)}
-//         >
-//           <span>
-//             {/* <img
-//               src={selectedService === Specialtie.id
-//                 ? "../../assets/Icons/logo-w.png"
-//                 : "../../assets/Icons/icon-logo.png")}
-//               width={35}
-//               alt="logo"
-//             /> */}
-//           </span>
-//           <p
-//             className={`btn-service-text${
-//               selectedService === Specialtie.id ? "selected" : ""
-//             }`}
-//           >
-//             {Specialtie?.name}
-//           </p>
-//         </div>
-//       ))}
-//     </div>
-
-//     <div className="text-services">
-//       <h2>Le bien être de nos patients est notre priorité.</h2>
-//       <span className="description-service">
-//         {text
-//           ? text?.text_1?.substring(0, 200)
-//           : data[0].one_description?.substring(0, 200)}
-//         ..
-//       </span>
-//       <div className="services-grid-text-services">
-//         {servicesData?.map((el) => (
-//           <Link
-//             to={`/Services/${el.id}`}
-//             className="services-text-with-circle"
-//             key={el.id}
-//             onClick={() =>
-//               window.scrollTo({
-//                 top: 0,
-//                 behavior: "smooth",
-//               })
-//             }
-//           >
-//             <div className="services-icon-text-with-circle">
-//               <Circle />
-//             </div>
-//             <p className="services-p-text-with-circle">{el.name}</p>
-//           </Link>
-//         ))}
-//       </div>
-
-//       <div className="learn-more-btn-services-position">
-//         <Link
-//           to={`/spécialités/${selectedService}`}
-//           onClick={() =>
-//             window.scrollTo({
-//               top: 0,
-//               behavior: "smooth",
-//             })
-//           }
-//           className="learn-more-btn-services"
-//         >
-//           <div>En savoir plus</div>
-//           <div className="learn-more-icon-services">
-//             <ArrowRight />
-//           </div>
-//         </Link>
-//       </div>
-//     </div>
-//   </div>
-// </div>

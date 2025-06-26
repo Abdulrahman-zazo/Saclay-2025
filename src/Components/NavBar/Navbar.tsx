@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./Navbar.css";
 import { Link } from "react-router-dom";
 import {
   doctolibtext,
@@ -14,42 +13,37 @@ import { ChevronDown, Menu, X } from "lucide-react";
 import type { Specialty } from "../../Types";
 import { useContact, useSpecialties } from "../Context";
 
-interface Props {
-  specialties: Specialty[];
-}
-const SpecialtiesDropdown = ({ specialties }: Props) => {
+const SpecialtiesDropdown = ({ specialties }: { specialties: Specialty[] }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <div
-      className="relative group"
+      className="relative"
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
     >
       <button
-        className="flex text-white items-center gap-1 px-4 py-2 text-base font-semibold  
-         transition-colors tracking-widest"
+        className="flex items-center gap-1   tracking-wide  py-2 hover:text-secondary transition"
         onClick={() => setOpen(!open)}
       >
         <span>Spécialités</span>
-        <ChevronDown className="text-xs mt-[2px]" />
+        <ChevronDown className="w-4 h-4 " />
       </button>
 
       {open && (
-        <div className="absolute left-0 top-full mt-1 w-60 border bg-white border-gray-200 rounded-md shadow-lg z-50 flex flex-col text-gray-900">
-          {specialties?.map((item) => (
-            <div key={item.id}>
-              <Link
-                to={`/spécialités/${item.id}`}
-                onClick={() => {
-                  setOpen(false);
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }}
-                className="block px-4 py-2 text-base    text-gray-900  hover:bg-gray-100 "
-              >
-                {item.name}
-              </Link>
-            </div>
+        <div className="absolute left-0 mt-1 w-56 bg-white border border-gray-200 rounded-md shadow-md z-50">
+          {specialties.map((item) => (
+            <Link
+              key={item.id}
+              to={`/spécialités/${item.id}`}
+              onClick={() => {
+                setOpen(false);
+                window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
+              className="block px-4 py-2 text-gray-800 hover:bg-gray-100 transition"
+            >
+              {item.name}
+            </Link>
           ))}
         </div>
       )}
@@ -57,129 +51,135 @@ const SpecialtiesDropdown = ({ specialties }: Props) => {
   );
 };
 
-function Navbar() {
-  const [openList, setOpenList] = useState(false);
-  const Contact = useContact();
-
-  // Specialties
-  const Specialties = useSpecialties();
+export default function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const specialties = useSpecialties() || [];
+  const contact = useContact();
 
   return (
-    <div className="navbar">
-      <div className="top-nav">
-        <div className="primary-logo">
-          <img src={LogoPrimary} alt="logo" />
-        </div>
-        <div className="contact-nav">
-          <div className="contat-nav-section">
-            <div className="contact-icon-nav">
-              <img src={PhoneImage} alt="icon-contact" />
-            </div>
-            <div className="contact-text-nav">
-              <p className="contact-text-nav-title">Téléphone</p>
-              <p className="contact-text-nav-second-title">
-                <a href={`tel:${Contact?.phone_number}`} target="_blank">
-                  {" "}
-                  {Contact?.phone_number}
-                </a>
-              </p>
-            </div>
-          </div>
-
-          <div className="contat-nav-section">
-            <div className="contact-icon-nav">
-              <img src={locationImage} alt="icon-contact" />
-            </div>
-            <div className="contact-text-nav">
-              <p className="contact-text-nav-title"> Adresse</p>
-              <p className="contact-text-nav-second-title">
+    <nav className="fixed top-0 left-0 w-full z-50 font-secondary">
+      {/* Top Bar */}
+      <div className="bg-white hidden  md:flex justify-between items-center px-6 py-2 shadow-sm">
+        <img
+          src={LogoPrimary}
+          alt="Logo"
+          className="hidden w-[150px] md:inline md:w-[150px]"
+        />
+        <div className="flex flex-row md:flex gap-6">
+          {[
+            {
+              icon: PhoneImage,
+              label: "Téléphone",
+              value: contact?.phone_number,
+              href: `tel:${contact?.phone_number}`,
+            },
+            {
+              icon: locationImage,
+              label: "Adresse",
+              value: "2 Sentier de la Voie Verte - 91400 Orsay",
+              href: "https://maps.app.goo.gl/eCmdzidAhrUDUVRVA",
+            },
+            {
+              icon: ParkingImage,
+              label: "Parking",
+              value: "Du bois des Rames (à 100 m)",
+              href: "https://maps.app.goo.gl/35aKnnsddDNXmDgQ6",
+            },
+          ].map((item, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <img src={item.icon} alt={item.label} className="w-6 h-6" />
+              <div>
+                <p className="text-sm text-secondary">{item.label}</p>
                 <a
-                  href="https://maps.app.goo.gl/eCmdzidAhrUDUVRVA"
-                  target="_blank"
+                  href={item.href}
+                  className="text-xs md:text-sm text-primary hover:text-secondary transition"
                 >
-                  {" "}
-                  2 Sentier de la Voie Verte - 91400 Orsay
+                  {item.value}
                 </a>
-              </p>
+              </div>
             </div>
-          </div>
-          <div className="contat-nav-section">
-            <div className="contact-icon-nav">
-              <img src={ParkingImage} alt="icon-contact" />
-            </div>
-            <div className="contact-text-nav">
-              <p className="contact-text-nav-title">Parking</p>
-              <p className="contact-text-nav-second-title">
-                <a
-                  href="https://maps.app.goo.gl/35aKnnsddDNXmDgQ6"
-                  target="_blank"
-                >
-                  Du bois des Rames (à 100 m)
-                </a>
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-      <div className="bottom-nav">
-        <div className="primary-logo-mobile">
-          <Link to={"/"}>
-            <img src={LogoSecondary} alt="logo" />
-          </Link>
-        </div>
-        <div className={openList ? "list-nav-mobile" : "list-nav"}>
-          <ul>
-            <li>
-              <Link to={"/"}>Accueil</Link>
-            </li>
-            <li>
-              <Link to={"/À-propos-de-nous"}>À propos de nous</Link>
-            </li>
 
-            <SpecialtiesDropdown specialties={Specialties || []} />
+      {/* Bottom Nav */}
+      <div className="bg-primary flex justify-between items-center px-6 py-3">
+        <Link to="/" className="md:hidden">
+          <img src={LogoSecondary} alt="Logo" className="w-[150px]" />
+        </Link>
 
-            <li>
-              <Link to={"/tarifs"}>Tarifs</Link>
-            </li>
-            <li>
-              <Link to={"/contact"}>Contact</Link>
-            </li>
-          </ul>
-          <div className="Appointment-btn-mobile">
+        <ul className="hidden md:flex items-center gap-6 text-white text-sm md:text-base">
+          <li>
+            <Link to="/">Accueil</Link>
+          </li>
+          <li>
+            <Link to="/À-propos-de-nous">À propos de nous</Link>
+          </li>
+          <li>
+            <SpecialtiesDropdown specialties={specialties} />
+          </li>
+          <li>
+            <Link to="/tarifs">Tarifs</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+        </ul>
+
+        {/* Desktop Appointment Button */}
+        <a
+          href={contact?.doctolib_url}
+          target="_blank"
+          rel="noreferrer"
+          className="hidden md:flex items-center bg-light-blue text-primary text-sm font-medium py-2 px-4 rounded-full hover:bg-light-blue transition"
+        >
+          <span>Prise de RDV</span>
+          <img src={doctolibtext} alt="" className="w-[45px] ml-2" />
+        </a>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden text-white"
+          onClick={() => setIsOpen(!isOpen)}
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="bg-light-blue text-primary shadow-inner md:hidden">
+          <ul className="flex flex-col items-center space-y-4 py-6">
+            {["Accueil", "À propos de nous", "Tarifs", "Contact"].map(
+              (label, i) => (
+                <li key={i}>
+                  <Link
+                    to={
+                      label === "Accueil"
+                        ? "/"
+                        : `/${label.toLowerCase().replace(/\s/g, "-")}`
+                    }
+                    className="text-lg font-medium hover:text-secondary transition"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {label}
+                  </Link>
+                </li>
+              )
+            )}
+            <SpecialtiesDropdown specialties={specialties} />
             <a
-              href={`${Contact?.doctolib_url}`}
+              href={contact?.doctolib_url}
               target="_blank"
               rel="noreferrer"
+              className="flex items-center bg-primary text-white rounded-full py-2 px-6 mt-4 hover:bg-secondary transition"
             >
-              Prise de RDV (
-              <img
-                src={doctolibtext2}
-                width={30}
-                alt="Prise de RDV"
-                style={{ margin: "0px 10px" }}
-              />
-              )
+              <span>Prise de RDV</span>
+              <img src={doctolibtext2} alt="" className="w-[30px] ml-2" />
             </a>
-          </div>
+          </ul>
         </div>
-        <div className="Appointment-btn">
-          <a href={`${Contact?.doctolib_url}`} target="_blank" rel="noreferrer">
-            Prise de RDV (
-            <img
-              src={doctolibtext}
-              width={50}
-              alt="Prise de RDV"
-              style={{ margin: "0px 5px" }}
-            />
-            )
-          </a>
-        </div>
-        <div className="list-in-mobile" onClick={() => setOpenList(!openList)}>
-          {openList ? <X /> : <Menu />}
-        </div>
-      </div>
-    </div>
+      )}
+    </nav>
   );
 }
-
-export default Navbar;

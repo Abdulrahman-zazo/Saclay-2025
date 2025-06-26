@@ -32,3 +32,5 @@ export const initialdefinition =
 
 export const IconLogo =
   "https://res.cloudinary.com/dmn6uzy82/image/upload/v1750860963/icon-logo_x4m4qw.png";
+export const IconLogoW =
+  "https://res.cloudinary.com/dmn6uzy82/image/upload/v1750860963/logo-w_t2lkb4.png";

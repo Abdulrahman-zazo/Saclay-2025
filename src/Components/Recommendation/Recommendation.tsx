@@ -1,36 +1,42 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Pagination } from "swiper/modules";
-// import "swiper/css";
-// import "swiper/css/pagination";
-import "./Recommendation.css";
+import { Autoplay } from "swiper/modules";
 
-import { comma } from "../../assets/Images";
 import { useRecommendation } from "../Context";
-import type { Recommendation } from "../../Types";
+import type { Recommendation as RecommendationType } from "../../Types";
+import { comma } from "../../assets/Images";
 
 const RecommendationComponent = () => {
-  const Recommendation = useRecommendation();
-  // Recommendation_messages
+  const recommendations = useRecommendation();
+
   return (
-    <div className="recommendation">
-      <div className="recommendation-element">
-        <img src={comma} alt="comma" />
+    <div
+      className="w-full bg-cover bg-center bg-no-repeat py-24"
+      style={{
+        backgroundImage:
+          'url("https://res.cloudinary.com/dmn6uzy82/image/upload/v1750860846/recommendation_y3wtfo.webp")',
+      }}
+    >
+      <div className="max-w-3xl mx-auto text-center">
+        <img src={comma} alt="comma" className="w-10 mx-auto mb-6" />
+
         <Swiper
-          centeredSlides={true}
-          autoplay={{
-            delay: 3500,
-            disableOnInteraction: false,
-          }}
-          pagination={{
-            clickable: true,
-          }}
-          modules={[Autoplay, Pagination]}
-          className="mySwiper"
+          modules={[Autoplay]}
+          autoplay={{ delay: 1000, disableOnInteraction: false }}
+          loop
+          slidesPerView={1}
+          spaceBetween={30}
+          grabCursor
         >
-          {Recommendation?.map((el: Recommendation) => (
+          {recommendations?.map((el: RecommendationType) => (
             <SwiperSlide key={el.id}>
-              <p>{el.message}</p>
-              <h4>{el.name}</h4>
+              <div className="flex flex-col items-center text-white">
+                <p className="text-sm md:text-base leading-relaxed tracking-wide mb-4">
+                  {el.message}
+                </p>
+                <h4 className="text-sm font-light border-t border-blue-300 pt-3">
+                  {el.name}
+                </h4>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

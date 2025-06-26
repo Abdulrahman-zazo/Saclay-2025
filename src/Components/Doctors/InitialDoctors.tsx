@@ -1,31 +1,22 @@
 import DoctorsCard from "./DoctorsCard";
-import "./InitialDoctors.css";
 import { Link } from "react-router-dom";
-
 import { ArrowRight } from "lucide-react";
 import { useDoctors } from "../Context";
+
 function InitialDoctors({ slice }: { slice: number }) {
   const doctors = useDoctors();
 
   return (
-    <div className="Initial_Doctors">
+    <div className="flex flex-col items-center w-[80%] mx-auto my-[60px] max-[900px]:w-full">
       <DoctorsCard slice={slice} data={doctors || []} />
 
-      <div>
+      <div className="mt-6">
         <Link
-          to={"/médecins"}
-          className="learn-more-btn-doctor"
-          onClick={() =>
-            window.scrollTo({
-              top: 0,
-              behavior: "smooth",
-            })
-          }
+          to="/médecins"
+          className="flex items-center justify-center text-secondary font-secondary text-[16px] m-5 hover:text-primary transition-all duration-200"
         >
-          <div>En savoir plus</div>
-          <div className="learn-more-icon-doctor">
-            <ArrowRight />
-          </div>
+          <span>En savoir plus</span>
+          <ArrowRight className="ml-2 w-[18px] h-[18px]" />
         </Link>
       </div>
     </div>

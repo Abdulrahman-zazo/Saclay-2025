@@ -1,141 +1,155 @@
-import "./Footer.css";
 import { Link } from "react-router-dom";
-
 import { Facebook, Instagram } from "lucide-react";
 import { doctolib, doctolibtext2, LogoNyve } from "../../assets/Images";
 import { useContact } from "../Context";
 
 function Footer() {
   const Contact = useContact();
-  const date = new Date();
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="footer">
-      <div className="element-footer">
-        <div className="img-footer">
-          <img src={LogoNyve} alt="Saclay Care Centre Logo" />
+    <footer className="bg-primary text-white font-secondary py-10">
+      <div className="w-[90%] max-w-[1200px] mx-auto flex flex-wrap gap-10 justify-between items-start max-[900px]:grid max-[900px]:grid-cols-2">
+        {/* Logo */}
+        <div className="col-span-2 flex justify-center md:justify-start">
+          <img src={LogoNyve} alt="Logo" className="w-[180px] md:w-[200px]" />
         </div>
 
-        <div className="link-footer">
-          <h3>Liens importants</h3>
-          <ul>
-            <li>
-              <Link to="/" className="footer-link-btn">
-                Prise de RDV
-              </Link>
-            </li>
-            <br />
-            <li>
-              <Link to={"/médecins"} className="footer-link-btn">
-                Médecins
-              </Link>
-            </li>
-            <br />
-
-            <li>
-              <Link to={"/services"} className="footer-link-btn">
-                Services
-              </Link>
-            </li>
-
-            <li>
-              <Link to={"/À-propos-de-nous"} className="footer-link-btn">
-                À propos de nous
-              </Link>
-            </li>
+        {/* Important Links */}
+        <div>
+          <h3 className="text-sm md:text-base font-semibold mb-4 uppercase tracking-wider">
+            Liens importants
+          </h3>
+          <ul className="space-y-2 text-xs md:text-sm">
+            {["Prise de RDV", "Médecins", "Services", "À propos de nous"].map(
+              (label, i) => (
+                <li key={i}>
+                  <Link
+                    to={
+                      label === "Prise de RDV"
+                        ? "/"
+                        : `/${label.toLowerCase().replace(/\s/g, "-")}`
+                    }
+                    className="hover:text-secondary transition"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              )
+            )}
           </ul>
         </div>
 
-        <div className="contact-footer">
-          <h3>Contactez-nous</h3>
-          <ul>
+        {/* Contact Info */}
+        <div>
+          <h3 className="text-sm md:text-base font-semibold mb-4 uppercase tracking-wider">
+            Contactez-nous
+          </h3>
+          <div className="space-y-3 text-xs md:text-sm">
             <p>
-              Téléphone :
-              <a href={`tel:${Contact?.phone_number}`} target="_blank">
-                {" "}
+              Téléphone:{" "}
+              <a
+                href={`tel:${Contact?.phone_number}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-secondary"
+              >
                 {Contact?.phone_number}
               </a>
             </p>
-            <br />
-
             <p>
-              Mail :
-              <a href={`mailto:${Contact?.email}`} target="_blank">
-                {" "}
+              Mail:{" "}
+              <a
+                href={`mailto:${Contact?.email}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-secondary"
+              >
                 {Contact?.email}
               </a>
             </p>
-            <br />
-
             <p>
-              Adresse :{" "}
+              Adresse:{" "}
               <a
                 href="https://maps.app.goo.gl/eCmdzidAhrUDUVRVA"
                 target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-secondary"
               >
-                {" "}
                 2 Sentier de la Voie Verte - 91400 Orsay
               </a>
             </p>
-            <br />
-
             <p>
-              Parking :{" "}
+              Parking:{" "}
               <a
                 href="https://maps.app.goo.gl/35aKnnsddDNXmDgQ6"
                 target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-secondary"
               >
-                Du bois des Rames (à 100 m)
+                Du bois des Rames (à 100m)
               </a>
             </p>
-          </ul>
+          </div>
         </div>
 
-        <div className="btn-appointment-footer-or">
-          <h3>Prenez rendez-vous</h3>
-          <a href={`${Contact?.doctolib_url}`} target="_blank" rel="noreferrer">
-            Prise de RDV (
-            <img
-              src={doctolibtext2}
-              width={55}
-              alt="Prise de RDV"
-              style={{ margin: "0px 5px" }}
-            />
-            )
+        {/* Doctolib Button */}
+        <div className="flex flex-col items-center md:items-start col-span-2  md:justify-start">
+          <h3 className="text-sm md:text-base font-semibold mb-4 uppercase tracking-wider">
+            Prenez rendez-vous
+          </h3>
+          <a
+            href={Contact?.doctolib_url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center bg-secondary text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-light-blue transition"
+          >
+            <span>Prise de RDV</span>
+            <img src={doctolibtext2} alt="Doctolib" className="w-[55px] ml-3" />
           </a>
         </div>
       </div>
-      <div className="divider" />
-      <div className="under-footer">
-        <div className="under">
-          <p>© {date.getFullYear()} CENTRE DE SOINS DE SACLAY</p>
-          <a href="https://veguscode.com" target="_blank">
+
+      {/* Divider */}
+      <div className="w-[90%] max-w-[1200px] mx-auto border-t border-light-blue my-6" />
+
+      {/* Bottom Row */}
+      <div className="w-[90%] max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center text-center gap-4 text-xs md:text-sm">
+        <div>
+          <p>© {year} CENTRE DE SOINS DE SACLAY</p>
+          <a
+            href="https://veguscode.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-secondary transition"
+          >
             par l'équipe de VEGUS CODE
           </a>
         </div>
-        <div className="icon-footer">
+        <div className="flex items-center gap-4">
           <a
-            className="social-media-footer"
-            href={`${Contact?.facebook_url}`}
+            href={Contact?.facebook_url}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
+            className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-light-blue rounded-full text-primary hover:bg-secondary transition"
           >
-            <Facebook />
+            <Facebook className="w-4 h-4" />
           </a>
           <a
-            className="social-media-footer"
-            href={`${Contact?.whatsapp_url}`}
+            href={Contact?.whatsapp_url}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
+            className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-light-blue rounded-full text-primary hover:bg-secondary transition"
           >
-            <Instagram />
+            <Instagram className="w-4 h-4" />
           </a>
           <a
-            className="social-media-footer"
-            href={`${Contact?.doctolib_url}`}
+            href={Contact?.doctolib_url}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
+            className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-light-blue rounded-full hover:bg-secondary transition"
           >
-            <img src={doctolib} width={15} alt="doctolib" />
+            <img src={doctolib} alt="Doctolib" className="w-3.5 h-3.5" />
           </a>
         </div>
       </div>

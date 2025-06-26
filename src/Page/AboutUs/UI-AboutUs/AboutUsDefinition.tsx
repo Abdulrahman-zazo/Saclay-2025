@@ -1,6 +1,6 @@
-import { Circle } from "lucide-react";
 import { aboutusdefinition } from "../../../assets/Images";
 import "./AboutUsDefinition.css";
+import { CircleIcon } from "../../../assets/CircleIcon";
 
 function AboutUsDefinition() {
   return (
@@ -30,31 +30,31 @@ function AboutUsDefinition() {
           <div className="grid-text-about-us">
             <div className="text-with-circle">
               <div className="icon-text-with-circle">
-                <Circle />
+                <CircleIcon />
               </div>
               <p className="p-text-with-circle">Continuité</p>
             </div>
             <div className="text-with-circle">
               <div className="icon-text-with-circle">
-                <Circle />
+                <CircleIcon />
               </div>
               <p className="p-text-with-circle">Efficacité</p>
             </div>
             <div className="text-with-circle">
               <div className="icon-text-with-circle">
-                <Circle />
+                <CircleIcon />
               </div>
               <p className="p-text-with-circle">Globalité</p>
             </div>
             <div className="text-with-circle">
               <div className="icon-text-with-circle">
-                <Circle />
+                <CircleIcon />
               </div>
               <p className="p-text-with-circle"> Toujours à l'écoute</p>
             </div>
             <div className="text-with-circle">
               <div className="icon-text-with-circle">
-                <Circle />
+                <CircleIcon />
               </div>
               <p className="p-text-with-circle">Sécurité</p>
             </div>
@@ -65,7 +65,7 @@ function AboutUsDefinition() {
           <div className="grid-text-about-us">
             <div className="text-with-circle">
               <div className="icon-text-with-circle">
-                <Circle />
+                <CircleIcon />
               </div>
               <p className="p-text-with-circle">
                 {" "}
@@ -74,19 +74,19 @@ function AboutUsDefinition() {
             </div>
             <div className="text-with-circle">
               <div className="icon-text-with-circle">
-                <Circle />
+                <CircleIcon />
               </div>
               <p className="p-text-with-circle">Equité</p>
             </div>
             <div className="text-with-circle">
               <div className="icon-text-with-circle">
-                <Circle />
+                <CircleIcon />
               </div>
               <p className="p-text-with-circle">Favoriser l'accès au soin</p>
             </div>
             <div className="text-with-circle">
               <div className="icon-text-with-circle">
-                <Circle />
+                <CircleIcon />
               </div>
               <p className="p-text-with-circle"> Prise en compte des besoins</p>
             </div>
