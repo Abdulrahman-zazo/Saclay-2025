@@ -63,3 +63,40 @@
 body {
   font-family: "inter", sans-serif;
 }
+
+@layer utilities {
+  @keyframes slide-right {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(30px);
+    }
+  }
+
+  .animate-slide-right {
+    animation: slide-right 0.5s ease both;
+  }
+}
+
+@layer utilities {
+  @keyframes slide-top {
+    0% {
+      transform: translateY(50px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-top {
+    animation: slide-top 0.5s ease both;
+  }
+}
+@layer base {
+  html,
+  :host {
+    -webkit-text-size-adjust: 100% !important;
+    text-size-adjust: 100% !important;
+  }
+}

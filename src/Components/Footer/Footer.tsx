@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Facebook, Instagram } from "lucide-react";
+import { Facebook, Instagram } from "react-feather";
 import { doctolib, doctolibtext2, LogoNyve } from "../../assets/Images";
 import { useContact } from "../Context";
 
@@ -49,6 +49,7 @@ function Footer() {
             <p>
               Téléphone:{" "}
               <a
+                title="phone number"
                 href={`tel:${Contact?.phone_number}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -60,6 +61,7 @@ function Footer() {
             <p>
               Mail:{" "}
               <a
+                title="email"
                 href={`mailto:${Contact?.email}`}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -73,6 +75,7 @@ function Footer() {
               <a
                 href="https://maps.app.goo.gl/eCmdzidAhrUDUVRVA"
                 target="_blank"
+                title="Location"
                 rel="noopener noreferrer"
                 className="hover:text-secondary"
               >
@@ -82,6 +85,7 @@ function Footer() {
             <p>
               Parking:{" "}
               <a
+                title="Location Parking"
                 href="https://maps.app.goo.gl/35aKnnsddDNXmDgQ6"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -99,6 +103,7 @@ function Footer() {
             Prenez rendez-vous
           </h3>
           <a
+            title="doctolib"
             href={Contact?.doctolib_url}
             target="_blank"
             rel="noopener noreferrer"
@@ -118,6 +123,7 @@ function Footer() {
         <div>
           <p>© {year} CENTRE DE SOINS DE SACLAY</p>
           <a
+            title="VEGUS CODE"
             href="https://veguscode.com"
             target="_blank"
             rel="noopener noreferrer"
@@ -128,6 +134,7 @@ function Footer() {
         </div>
         <div className="flex items-center gap-4">
           <a
+            title="facebook "
             href={Contact?.facebook_url}
             target="_blank"
             rel="noopener noreferrer"
@@ -136,6 +143,7 @@ function Footer() {
             <Facebook className="w-4 h-4" />
           </a>
           <a
+            title="whatsapp "
             href={Contact?.whatsapp_url}
             target="_blank"
             rel="noopener noreferrer"
@@ -144,6 +152,7 @@ function Footer() {
             <Instagram className="w-4 h-4" />
           </a>
           <a
+            title="doctolib "
             href={Contact?.doctolib_url}
             target="_blank"
             rel="noopener noreferrer"

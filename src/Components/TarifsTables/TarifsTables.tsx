@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Loader from "../../Constant/Loader";
 import { useGetAllTypesQuery } from "../../app/features/prices/pricesApi";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown } from "react-feather";
+// import { ChevronDown } from "react-feather";
 export interface AreaAndPrice {
   id: number;
   area: string;
@@ -53,6 +54,7 @@ function TarifsTables() {
           >
             {/* Accordion Header */}
             <button
+              title="select "
               onClick={() => toggleAccordion(type.id)}
               className="w-full flex justify-between items-center px-6 py-4 bg-white hover:bg-gray-50 transition"
             >

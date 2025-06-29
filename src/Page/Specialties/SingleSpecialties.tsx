@@ -1,10 +1,7 @@
-import { Link, useParams } from "react-router-dom";
-import Navbar from "../../Components/NavBar/Navbar";
-import Footer from "../../Components/Footer/Footer";
+import { useParams } from "react-router-dom";
+
 import ContactCopmonent from "../../Components/Contact/ContactCopmonent";
 import DoctorsCard from "../../Components/Doctors/DoctorsCard";
-
-import "./SingleSpecialties.css";
 import Services from "../../Components/Services/ServicesInSpecialty";
 
 import {
@@ -12,86 +9,79 @@ import {
   useGetAllServicesInSpecialtyQuery,
   useGetSpecialtyByIdQuery,
 } from "../../app/features/Specialty/SpecialtyApi";
-
-import { Phone } from "lucide-react";
+import { Phone } from "react-feather";
 
 function SingleSpecialties() {
-  const params = useParams();
-
-  const { specialty_id } = params;
+  const { specialtie_id } = useParams();
   const { data: specialtyData } = useGetSpecialtyByIdQuery(
-    specialty_id as string
+    specialtie_id as string
   );
-  const { data: doctorRes, isLoading } = useGetAllDoctorsInSpecialtyQuery(
-    specialty_id as string
+  const { data: doctorRes } = useGetAllDoctorsInSpecialtyQuery(
+    specialtie_id as string
   );
   const { data: servicesRes } = useGetAllServicesInSpecialtyQuery(
-    specialty_id as string
+    specialtie_id as string
   );
 
   return (
-    <div>
-      <Navbar />
-
+    <div className="font-secondary pt-20 sm:pt-34">
+      {/* Header with background image and overlay */}
       <div
-        className="Headersingle-specialties-section"
+        className="pt-[120px] h-[400px] w-full bg-center bg-cover relative"
         style={{
-          backgroundImage: ` url(${specialtyData?.header_image_url})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          width: "100%",
-          height: "600px",
-          // Set the desired height
-          objectFit: "cover",
+          backgroundImage: `url(${specialtyData?.Specialty.header_image_url})`,
         }}
       >
-        <div className="Headersingle-specialties">
-          <div className="Headersingle-specialties-content">
-            <p>Accueil / spécialités</p>
-            <h1>{specialtyData?.Specialty?.name}</h1>
-            <div className="Headersingle-specialties-btn">
-              <Link to="#Servicesspecialties">En savoir plus</Link>
-            </div>
+        <div className="absolute inset-0 bg-white/60" />
+        <div className="absolute inset-0 bg-[url('https://res.cloudinary.com/dmn6uzy82/image/upload/v1750882654/overlay-top_pcsupp.png')]  bg-cover bg-center" />
+        <div className="relative z-10 flex items-center justify-center h-full">
+          <div className="text-left md:text-center px-6">
+            <p className="uppercase text-primary text-[18px] font-normal tracking-widest">
+              Accueil / spécialités
+            </p>
+            <h1 className="text-primary font-primary text-[32px] md:text-[48px] font-semibold">
+              {specialtyData?.Specialty?.name}
+            </h1>
           </div>
         </div>
       </div>
-      <br />
-      <br />
 
-      <div className="show-spesialty">
-        <div className="show-spesialty-text" id="Servicesspecialties">
-          {/* <h3>{specialtyData?.Specialty?.name}</h3> */}
-          <p>{specialtyData?.Specialty?.one_description} </p>
-          <p>{specialtyData?.Specialty?.second_description} </p>
-          <div className="show-spesialty-icon">
-            <span>
-              <Phone />
-            </span>
+      {/* Description */}
+      <section className="w-[80%] max-w-screen-xl mx-auto sm:my-10 flex flex-col md:flex-row items-center gap-8">
+        <div className="flex-1 text-text text-[16px] leading-relaxed space-y-4">
+          <p>{specialtyData?.Specialty?.one_description}</p>
+          <p>{specialtyData?.Specialty?.second_description}</p>
+          <div className="flex items-center text-secondary text-[16px] gap-2 font-medium">
+            <Phone className="w-5 h-5" />
             <span>{specialtyData?.Specialty?.phone_number}</span>
           </div>
         </div>
-      </div>
-      <div className="imageee">
+      </section>
+      <div className="flex justify-center w-full">
         <img
           src={specialtyData?.Specialty?.image_url}
           alt={specialtyData?.Specialty?.name}
-          className="image-sps"
-        />
-      </div>
-      <Services
-        data={servicesRes?.Services}
-        specialtyname={specialtyData?.Specialty?.name}
-      />
-      <div className="doctorInSpecialty">
-        <DoctorsCard
-          data={doctorRes?.Doctors}
-          specialtyname={specialtyData?.Specialty?.name}
-          isLoading={isLoading}
+          className="w-full max-w-4xl h-auto my-4 rounded-md object-cover"
         />
       </div>
 
+      {/* Services Section */}
+      <section id="Servicesspecialties" className="my-10">
+        <Services
+          data={servicesRes?.Services}
+          specialtyname={specialtyData?.Specialty?.name}
+        />
+      </section>
+
+      {/* Doctors Section */}
+      <section className="w-[90%] max-w-screen-xl mx-auto my-10">
+        <DoctorsCard
+          data={doctorRes?.Doctors}
+          specialtyname={specialtyData?.Specialty?.name}
+        />
+      </section>
+
       <ContactCopmonent />
-      <Footer />
     </div>
   );
 }

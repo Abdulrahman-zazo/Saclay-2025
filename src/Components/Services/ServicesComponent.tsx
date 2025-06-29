@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "react-feather";
 import { IconLogo, IconLogoW } from "../../assets/Images";
 import type { Service, Specialty } from "../../Types";
 import { CircleIcon } from "../../assets/CircleIcon";
@@ -43,6 +43,7 @@ function ServicesComponent({
             const isSelected = selectedService === specialty.id;
             return (
               <button
+                title="select"
                 key={specialty.id}
                 onClick={() => setSelectedService(specialty.id)}
                 className={`w-full flex flex-col items-center p-3 rounded-lg cursor-pointer transition-all duration-200 ${

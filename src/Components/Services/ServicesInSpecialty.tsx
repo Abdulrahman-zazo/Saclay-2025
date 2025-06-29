@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import type { Service } from "../../Types";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "react-feather";
 
 function Services({
   data,

@@ -25,7 +25,9 @@ function InitialSpecialties() {
         ))}
       </div>
       <div className="view-all-specialties">
-        <button onClick={() => nav(`/spécialités`)}>Voir tout</button>
+        <button title="spécialités" onClick={() => nav(`/spécialités`)}>
+          Voir tout
+        </button>
       </div>
     </div>
   );

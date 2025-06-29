@@ -1,6 +1,6 @@
 import DoctorsCard from "./DoctorsCard";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight } from "react-feather";
 import { useDoctors } from "../Context";
 
 function InitialDoctors({ slice }: { slice: number }) {

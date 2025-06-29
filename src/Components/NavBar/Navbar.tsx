@@ -9,7 +9,7 @@ import {
   ParkingImage,
   PhoneImage,
 } from "../../assets/Images";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "react-feather";
 import type { Specialty } from "../../Types";
 import { useContact, useSpecialties } from "../Context";
 
@@ -23,6 +23,7 @@ const SpecialtiesDropdown = ({ specialties }: { specialties: Specialty[] }) => {
       onMouseLeave={() => setOpen(false)}
     >
       <button
+        title="Spécialités"
         className="flex items-center gap-1   tracking-wide  py-2 hover:text-secondary transition"
         onClick={() => setOpen(!open)}
       >
@@ -72,18 +73,21 @@ export default function Navbar() {
               label: "Téléphone",
               value: contact?.phone_number,
               href: `tel:${contact?.phone_number}`,
+              title: "Téléphone",
             },
             {
               icon: locationImage,
               label: "Adresse",
               value: "2 Sentier de la Voie Verte - 91400 Orsay",
               href: "https://maps.app.goo.gl/eCmdzidAhrUDUVRVA",
+              title: "2 Sentier de la Voie Verte - 91400 Orsay",
             },
             {
               icon: ParkingImage,
               label: "Parking",
               value: "Du bois des Rames (à 100 m)",
               href: "https://maps.app.goo.gl/35aKnnsddDNXmDgQ6",
+              title: "Du bois des Rames (à 100 m)",
             },
           ].map((item, i) => (
             <div key={i} className="flex items-center gap-2">
@@ -92,6 +96,7 @@ export default function Navbar() {
                 <p className="text-sm text-secondary">{item.label}</p>
                 <a
                   href={item.href}
+                  title={item.title}
                   className="text-xs md:text-sm text-primary hover:text-secondary transition"
                 >
                   {item.value}
@@ -139,6 +144,7 @@ export default function Navbar() {
 
         {/* Mobile Menu Toggle */}
         <button
+          title="open menu"
           className="md:hidden text-white"
           onClick={() => setIsOpen(!isOpen)}
         >

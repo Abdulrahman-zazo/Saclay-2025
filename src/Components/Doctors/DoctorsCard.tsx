@@ -1,4 +1,4 @@
-import { Circle } from "lucide-react";
+import { Circle } from "react-feather";
 import type { Doctor } from "../../Types";
 
 function Doctors({

@@ -1,100 +1,81 @@
 import { aboutusdefinition } from "../../../assets/Images";
-import "./AboutUsDefinition.css";
 import { CircleIcon } from "../../../assets/CircleIcon";
 
 function AboutUsDefinition() {
   return (
-    <div className="Initial-about-us">
-      <div className="view-about-us">
-        <div className="imgs-about-us">
-          <img src={aboutusdefinition} alt="InitialServices" />
+    <div className="w-[90%] max-w-screen-xl mx-auto my-20">
+      <div className="flex flex-col md:flex-row items-start justify-between gap-10">
+        {/* الصورة تظهر فقط على الشاشات المتوسطة فما فوق */}
+        <div className="hidden md:flex justify-center">
+          <img
+            src={aboutusdefinition}
+            alt="Centre Saclay Care"
+            className="w-[400px] h-[650px] object-cover"
+          />
         </div>
-        <div className="text-about-us">
-          <p className="second-title-about-us">
-            BIENVENUE AU CENTRE SACLAY CARE
+
+        {/* النص */}
+        <div className="flex flex-col gap-2 font-secondary text-left w-full md:w-[60%]">
+          <p className="uppercase text-secondary text-sm md:text-base font-bold tracking-widest text-left  md:text-left">
+            Bienvenue au centre Saclay Care
           </p>
-          <h1 className="first-title-about-us">
+          <h1 className="text-primary font-primary text-xl md:text-3xl font-semibold text-center md:text-left">
             Meilleurs soins pour votre bonne santé
           </h1>
-          <span className="text-span">
+          <p className="text-[#353535] text-sm md:text-base leading-relaxed">
             Au cœur du Plateau de Saclay, le Centre Médico-esthétique Saclay
             Care ouvre ses portes dans un espace chaleureux, conçu pour votre
             bien-être. Fondé par le Dr Ahmed BANANEH et le Dr Ola BANANEH-HEBBO,
             notre centre est le fruit d'une vision commune : offrir une prise en
             charge complète, alliant compétences médicales pluridisciplinaires
             et approche bienveillante.
-          </span>
-          <span className="description-about-us">
-            Critères de qualité des soins / de la prise en charge des patients :
-          </span>
-          <div className="grid-text-about-us">
-            <div className="text-with-circle">
-              <div className="icon-text-with-circle">
+          </p>
+
+          {/* Section 1 */}
+          <p className="text-primary text-base md:text-lg font-semibold mt-4">
+            Critères de qualité des soins / de la prise en charge des patients:
+          </p>
+          <div className="grid grid-cols-2 gap-y-2 md:gap-y-2">
+            {[
+              "Continuité",
+              "Efficacité",
+              "Globalité",
+              "Toujours à l'écoute",
+              "Sécurité",
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2">
                 <CircleIcon />
+                <p className="text-sm md:text-base font-medium text-primary">
+                  {item}
+                </p>
               </div>
-              <p className="p-text-with-circle">Continuité</p>
-            </div>
-            <div className="text-with-circle">
-              <div className="icon-text-with-circle">
-                <CircleIcon />
-              </div>
-              <p className="p-text-with-circle">Efficacité</p>
-            </div>
-            <div className="text-with-circle">
-              <div className="icon-text-with-circle">
-                <CircleIcon />
-              </div>
-              <p className="p-text-with-circle">Globalité</p>
-            </div>
-            <div className="text-with-circle">
-              <div className="icon-text-with-circle">
-                <CircleIcon />
-              </div>
-              <p className="p-text-with-circle"> Toujours à l'écoute</p>
-            </div>
-            <div className="text-with-circle">
-              <div className="icon-text-with-circle">
-                <CircleIcon />
-              </div>
-              <p className="p-text-with-circle">Sécurité</p>
-            </div>
+            ))}
           </div>
-          <span className="description-about-us">
+
+          {/* Section 2 */}
+          <p className="text-primary text-base md:text-lg font-semibold mt-6">
             Critères de qualité des services du centre:
-          </span>
-          <div className="grid-text-about-us">
-            <div className="text-with-circle">
-              <div className="icon-text-with-circle">
+          </p>
+          <div className="grid grid-cols-2 gap-y-2 md:gap-y-2">
+            {[
+              "Accessibilité (financière, géographique)",
+              "Equité",
+              "Favoriser l'accès au soin",
+              "Prise en compte des besoins",
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2">
                 <CircleIcon />
+                <p className="text-sm md:text-base font-medium text-primary">
+                  {item}
+                </p>
               </div>
-              <p className="p-text-with-circle">
-                {" "}
-                Accessibilité (financière, géographique)
-              </p>
-            </div>
-            <div className="text-with-circle">
-              <div className="icon-text-with-circle">
-                <CircleIcon />
-              </div>
-              <p className="p-text-with-circle">Equité</p>
-            </div>
-            <div className="text-with-circle">
-              <div className="icon-text-with-circle">
-                <CircleIcon />
-              </div>
-              <p className="p-text-with-circle">Favoriser l'accès au soin</p>
-            </div>
-            <div className="text-with-circle">
-              <div className="icon-text-with-circle">
-                <CircleIcon />
-              </div>
-              <p className="p-text-with-circle"> Prise en compte des besoins</p>
-            </div>
+            ))}
           </div>
-          <span className="text-span">
+
+          <p className="text-[#353535] text-sm md:text-base leading-relaxed mt-6">
             Notre mission est de garantir des soins de qualité accessibles à
             tous et de renforcer la relation entre les patients et les médecins.
-          </span>
+          </p>
         </div>
       </div>
     </div>

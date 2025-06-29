@@ -1,5 +1,3 @@
-import Navbar from "../../Components/NavBar/Navbar";
-import Footer from "../../Components/Footer/Footer";
 import ContactCopmonent from "../../Components/Contact/ContactCopmonent";
 import Recommendation from "../../Components/Recommendation/Recommendation";
 import ServicesInSpecialty from "../../Components/Services/ServicesInSpecialty";
@@ -12,7 +10,7 @@ function Services() {
   return (
     <div>
       <ScrollToHash />
-      <Navbar />
+
       <div className="Header-specialties-section">
         <div className="Header-specialties">
           <div className="header-specialties-content">
@@ -24,7 +22,6 @@ function Services() {
       <ServicesInSpecialty data={service || []} specialtyname="" />
       <Recommendation />
       <ContactCopmonent />
-      <Footer />
     </div>
   );
 }

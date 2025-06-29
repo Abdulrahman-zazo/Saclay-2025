@@ -9,6 +9,7 @@ import SingleSpecialties from "../Page/Specialties/SingleSpecialties";
 import SingleServices from "../Page/Services/SingleServices";
 import Services from "../Page/Services/Services";
 import NotFoundPage from "../Page/Notfound/NotFoundPage";
+import Landing from "../Page/Landing";
 // export const router = createBrowserRouter([
 
 //   {
@@ -36,43 +37,50 @@ import NotFoundPage from "../Page/Notfound/NotFoundPage";
 
 export const router = createBrowserRouter([
   {
+    element: <Landing />,
     path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
-  },
-  {
-    path: "/À-propos-de-nous",
-    element: <AboutUs />,
-  },
-  {
-    path: "/médecins",
-    element: <Doctors />,
+    children: [
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/À-propos-de-nous",
+        element: <AboutUs />,
+      },
+      {
+        path: "/médecins",
+        element: <Doctors />,
+      },
+
+      {
+        path: "/tarifs",
+        element: <Tarifs />,
+      },
+
+      {
+        path: "/spécialités",
+        element: <Specialties />,
+      },
+      {
+        path: "/spécialités/:specialtie_id",
+        element: <SingleSpecialties />,
+      },
+      {
+        path: "/Services/:Services_id",
+        element: <SingleServices />,
+      },
+      {
+        path: "/Services",
+        element: <Services />,
+      },
+    ],
   },
 
-  {
-    path: "/tarifs",
-    element: <Tarifs />,
-  },
-
-  {
-    path: "/spécialités",
-    element: <Specialties />,
-  },
-  {
-    path: "/spécialités/:specialtie_id",
-    element: <SingleSpecialties />,
-  },
-  {
-    path: "/Services/:Services_id",
-    element: <SingleServices />,
-  },
-  {
-    path: "/Services",
-    element: <Services />,
-  },
   {
     path: "/*",
     element: <NotFoundPage />,
