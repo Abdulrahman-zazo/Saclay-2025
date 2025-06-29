@@ -13,7 +13,7 @@ node_modules/
 # Vite cache
 .vite/
 .cache/
-dist/
+
 build/
 
 # Environment files
