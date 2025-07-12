@@ -1,13 +1,68 @@
 import { Link } from "react-router-dom";
 import { Facebook, Instagram } from "react-feather";
 import { doctolib, doctolibtext2, LogoNyve } from "../../assets/Images";
-import { useContact } from "../Context";
+import { useContact } from "../../Hooks/useContact";
+import { UseLoading } from "../../Hooks/useLoading";
 
 function Footer() {
   const Contact = useContact();
+  const Loading = UseLoading();
   const year = new Date().getFullYear();
 
-  return (
+  return Loading.isLoadingContact ? (
+    <footer className="bg-primary text-white font-secondary py-10 ">
+      <div className="w-[90%] max-w-[1200px] mx-auto flex flex-wrap gap-10 justify-between items-start max-[900px]:grid max-[900px]:grid-cols-2 animate-pulse">
+        {/* Logo Placeholder */}
+        <div className="col-span-2 flex justify-center md:justify-start">
+          <div className="bg-gray-400/50 rounded-md w-[180px] h-[45px]"></div>
+        </div>
+
+        {/* Important Links Placeholder */}
+        <div>
+          <div className="h-4 bg-gray-400/50 rounded w-32 mb-4"></div>
+          <ul className="space-y-2">
+            <li className="h-3 bg-gray-400/50 rounded w-24"></li>
+            <li className="h-3 bg-gray-400/50 rounded w-20"></li>
+            <li className="h-3 bg-gray-400/50 rounded w-28"></li>
+            <li className="h-3 bg-gray-400/50 rounded w-24"></li>
+          </ul>
+        </div>
+
+        {/* Contact Info Placeholder */}
+        <div>
+          <div className="h-4 bg-gray-400/50 rounded w-36 mb-4"></div>
+          <div className="space-y-3">
+            <div className="h-3 bg-gray-400/50 rounded w-48"></div>
+            <div className="h-3 bg-gray-400/50 rounded w-48"></div>
+            <div className="h-3 bg-gray-400/50 rounded w-56"></div>
+            <div className="h-3 bg-gray-400/50 rounded w-52"></div>
+          </div>
+        </div>
+
+        {/* Doctolib Button Placeholder */}
+        <div className="flex flex-col items-center md:items-start col-span-2 md:justify-start">
+          <div className="h-4 bg-gray-400/50 rounded w-40 mb-4"></div>
+          <div className="h-12 bg-gray-400/50 rounded-full w-48"></div>
+        </div>
+      </div>
+
+      {/* Divider Placeholder */}
+      <div className="w-[90%] max-w-[1200px] mx-auto border-t border-gray-700 my-6" />
+
+      {/* Bottom Row Placeholder */}
+      <div className="w-[90%] max-w-[1200px] mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="space-y-2">
+          <div className="h-3 bg-gray-400/50 rounded w-64"></div>
+          <div className="h-3 bg-gray-400/50 rounded w-48 mx-auto"></div>
+        </div>
+        <div className="flex items-center gap-4">
+          <div className="w-10 h-10 bg-gray-400/50 rounded-full"></div>
+          <div className="w-10 h-10 bg-gray-400/50 rounded-full"></div>
+          <div className="w-10 h-10 bg-gray-400/50 rounded-full"></div>
+        </div>
+      </div>
+    </footer>
+  ) : (
     <footer className="bg-primary text-white font-secondary py-10">
       <div className="w-[90%] max-w-[1200px] mx-auto flex flex-wrap gap-10 justify-between items-start max-[900px]:grid max-[900px]:grid-cols-2">
         {/* Logo */}

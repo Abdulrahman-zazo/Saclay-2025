@@ -1,10 +1,10 @@
 import ContactCopmonent from "../../Components/Contact/ContactCopmonent";
 import Recommendation from "../../Components/Recommendation/Recommendation";
 import ServicesInSpecialty from "../../Components/Services/ServicesInSpecialty";
+import { useServices } from "../../Hooks/useServices";
 
 import ScrollToHash from "../../utils/ScrollToHash";
 
-import { useServices } from "../../Components/Context";
 function Services() {
   const service = useServices();
   return (

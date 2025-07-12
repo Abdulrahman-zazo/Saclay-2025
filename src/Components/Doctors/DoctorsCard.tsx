@@ -5,14 +5,37 @@ function Doctors({
   slice,
   data,
   specialtyname,
+  isLoading,
 }: {
   slice?: number;
   data: Doctor[];
+  isLoading: boolean;
   specialtyname?: string;
 }) {
-  return (
+  return isLoading ? (
+    <div className="flex flex-col items-center w-[100%] mx-auto my-10">
+      <div className="h-5 bg-gray-200 rounded-md w-48 mb-4 animate-pulse"></div>
+
+      <div className="h-9 bg-gray-200 rounded-md w-64 my-2 animate-pulse"></div>
+
+      <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
+        {[...Array(slice || 2)].map((_, i) => (
+          <div
+            key={i}
+            className="bg-gray-100 rounded-md flex flex-col items-center pb-5 animate-pulse"
+          >
+            <div className="w-full h-[350px] bg-gray-100"></div>
+
+            <div className="h-5 bg-gray-100 rounded-md w-1/2 mt-3"></div>
+
+            <div className="h-4 bg-gray-100 rounded-md w-1/3 mt-2"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ) : (
     data?.length > 0 && (
-      <div className="flex flex-col items-center w-[80%] mx-auto my-10">
+      <div className="flex flex-col items-center w-[100%] mx-auto my-10">
         <p className="text-secondary font-secondary text-sm md:text-base font-bold uppercase tracking-widest">
           Soins de confiance
         </p>
@@ -20,7 +43,7 @@ function Doctors({
           {specialtyname ? `Les médecins en ${specialtyname}` : "Nos médecins"}
         </h1>
 
-        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8 mt-8">
+        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-8">
           {data.slice(0, slice).map((doctor) => (
             <div
               key={doctor.id}

@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 function Header() {
   return (
     <div className="pt-20 md:pt-[120px]">
@@ -27,12 +25,12 @@ function Header() {
           </h1>
 
           <div className="mt-10 max-[900px]:mt-4">
-            <Link
-              to="#Services"
+            <a
+              href="#Services"
               className="inline-block bg-light-blue text-primary text-[16px] font-medium font-secondary py-3 px-6 rounded-full transition hover:bg-secondary hover:text-white"
             >
               Nos services
-            </Link>
+            </a>
           </div>
         </div>
       </div>

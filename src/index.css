@@ -100,3 +100,7 @@ body {
     text-size-adjust: 100% !important;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}

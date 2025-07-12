@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Loader from "../../Constant/Loader";
+
 import { useGetAllTypesQuery } from "../../app/features/prices/pricesApi";
 import { ChevronDown } from "react-feather";
 // import { ChevronDown } from "react-feather";
@@ -34,7 +34,49 @@ function TarifsTables() {
     );
   };
 
-  if (isLoading) return <Loader />;
+  if (isLoading)
+    return (
+      <div className="w-[80%] mx-auto px-4 py-8 space-y-6 animate-pulse">
+        {[...Array(3)].map((_, i) => (
+          <div
+            key={i}
+            className="border border-gray-200 rounded-xl shadow-sm overflow-hidden"
+          >
+            {/* عنصر نائب لرأس الأكورديون */}
+            <div className="w-full flex justify-between items-center px-6 py-4 bg-gray-100">
+              <div className="h-6 bg-gray-300 rounded w-1/3"></div>
+              <div className="w-6 h-6 bg-gray-300 rounded-full"></div>
+            </div>
+            {/* عنصر نائب لمحتوى الأكورديون (يظهر فقط للأول) */}
+            {i === 0 && (
+              <div className="py-4 px-6">
+                {/* عنصر نائب لأزرار الفلتر */}
+                <div className="flex justify-center gap-4 mb-6">
+                  <div className="h-8 w-20 bg-gray-300 rounded-full"></div>
+                  <div className="h-8 w-20 bg-gray-300 rounded-full"></div>
+                  <div className="h-8 w-20 bg-gray-300 rounded-full"></div>
+                </div>
+                {/* عنصر نائب للجدول */}
+                <div className="w-full border border-gray-200 rounded-lg p-4">
+                  {/* عنصر نائب لصفوف الجدول */}
+                  <div className="space-y-4">
+                    {[...Array(4)].map((_, j) => (
+                      <div
+                        key={j}
+                        className="flex justify-between items-center"
+                      >
+                        <div className="h-4 bg-gray-300 rounded w-2/5"></div>
+                        <div className="h-4 bg-gray-300 rounded w-1/5"></div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    );
 
   return (
     <div className="w-[80%] mx-auto px-4 py-8 space-y-6">

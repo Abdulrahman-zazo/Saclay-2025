@@ -3,12 +3,44 @@ import { Link } from "react-router-dom";
 import type { Specialty } from "../../Types";
 import { IconLogo } from "../../assets/Images";
 import { ArrowRight } from "react-feather";
-import { useSpecialties } from "../../Components/Context";
+import { useSpecialties } from "../../Hooks/useSpecialties";
+import { UseLoading } from "../../Hooks/useLoading";
 
 function Specialties() {
   const data = useSpecialties();
+  const loading = UseLoading();
+  return loading.isLoadingSpecialties ? (
+    <div className="font-secondary ">
+      {/* Header Placeholder */}
+      <div className="pt-20 sm:pt-[120px] animate-pulse">
+        <div className="h-[250px] bg-gray-100">
+          <div className="w-full max-w-screen-xl mx-auto flex flex-col justify-center pt-20 px-4 md:px-0 md:w-[40%] md:ml-[200px]">
+            <div className="h-6 bg-gray-200 rounded w-48 mb-2"></div>
+            <div className="h-12 bg-gray-200 rounded w-64 mt-1"></div>
+          </div>
+        </div>
+      </div>
 
-  return (
+      {/* Cards Placeholder */}
+      <div className="w-[90%] max-w-screen-xl grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 mx-auto my-10 animate-pulse">
+        {[...Array(6)].map((_, i) => (
+          <div
+            key={i}
+            className="border border-gray-100 rounded-lg p-2 space-y-3"
+          >
+            {/* Image Placeholder */}
+            <div className="w-full h-[250px] bg-gray-200 rounded-md"></div>
+            {/* Title Placeholder */}
+            <div className="h-6 bg-gray-200 rounded w-3/4"></div>
+            {/* Description Placeholder */}
+            <div className="h-4 bg-gray-200 rounded w-full"></div>
+            {/* Link Placeholder */}
+            <div className="h-5 bg-gray-200 rounded w-1/3"></div>
+          </div>
+        ))}
+      </div>
+    </div>
+  ) : (
     <div className="font-secondary">
       {/* Header */}
       <div className="pt-20 sm:pt-[120px]">

@@ -1,9 +1,10 @@
 import DoctorsCard from "../../Components/Doctors/DoctorsCard";
-import { useDoctors } from "../../Components/Context";
+import { useDoctors } from "../../Hooks/useDoctors";
+import { UseLoading } from "../../Hooks/useLoading";
 
 function Doctors() {
   const doctors = useDoctors();
-
+  const Loading = UseLoading();
   return (
     <div className="font-secondary">
       {/* Header Section */}
@@ -29,7 +30,10 @@ function Doctors() {
 
       {/* Doctors Card Section */}
       <div className="w-[90%] max-w-screen-xl mx-auto my-10">
-        <DoctorsCard data={doctors || []} />
+        <DoctorsCard
+          data={doctors || []}
+          isLoading={Loading.isLoadingDoctors}
+        />
       </div>
     </div>
   );

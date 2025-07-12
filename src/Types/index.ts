@@ -47,3 +47,10 @@ export interface Recommendation {
   name: string;
   message: string;
 }
+export type LoadingContextType = {
+  isLoadingDoctors: boolean;
+  isLoadingServices: boolean;
+  isLoadingSpecialties: boolean;
+  isLoadingContact: boolean;
+  isLoadingRecommendation: boolean;
+};

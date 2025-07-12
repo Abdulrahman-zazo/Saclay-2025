@@ -1,5 +1,6 @@
-import { useServices, useSpecialties } from "../../../../Components/Context";
 import ServicesComponent from "../../../../Components/Services/ServicesComponent";
+import { useServices } from "../../../../Hooks/useServices";
+import { useSpecialties } from "../../../../Hooks/useSpecialties";
 function InitialServices() {
   const Specialties = useSpecialties();
   const Services = useServices();

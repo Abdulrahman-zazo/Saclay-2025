@@ -11,7 +11,9 @@ import {
 } from "../../assets/Images";
 import { ChevronDown, Menu, X } from "react-feather";
 import type { Specialty } from "../../Types";
-import { useContact, useSpecialties } from "../Context";
+import { useSpecialties } from "../../Hooks/useSpecialties";
+import { useContact } from "../../Hooks/useContact";
+import { UseLoading } from "../../Hooks/useLoading";
 
 const SpecialtiesDropdown = ({ specialties }: { specialties: Specialty[] }) => {
   const [open, setOpen] = useState(false);
@@ -56,56 +58,81 @@ export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const specialties = useSpecialties() || [];
   const contact = useContact();
+  const Loading = UseLoading();
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 font-secondary">
       {/* Top Bar */}
-      <div className="bg-white hidden  md:flex justify-between items-center px-6 py-2 shadow-sm">
-        <img
-          src={LogoPrimary}
-          alt="Logo"
-          className="hidden w-[150px] md:inline md:w-[150px]"
-        />
-        <div className="flex flex-row md:flex gap-6">
-          {[
-            {
-              icon: PhoneImage,
-              label: "Téléphone",
-              value: contact?.phone_number,
-              href: `tel:${contact?.phone_number}`,
-              title: "Téléphone",
-            },
-            {
-              icon: locationImage,
-              label: "Adresse",
-              value: "2 Sentier de la Voie Verte - 91400 Orsay",
-              href: "https://maps.app.goo.gl/eCmdzidAhrUDUVRVA",
-              title: "2 Sentier de la Voie Verte - 91400 Orsay",
-            },
-            {
-              icon: ParkingImage,
-              label: "Parking",
-              value: "Du bois des Rames (à 100 m)",
-              href: "https://maps.app.goo.gl/35aKnnsddDNXmDgQ6",
-              title: "Du bois des Rames (à 100 m)",
-            },
-          ].map((item, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <img src={item.icon} alt={item.label} className="w-6 h-6" />
-              <div>
-                <p className="text-sm text-secondary">{item.label}</p>
-                <a
-                  href={item.href}
-                  title={item.title}
-                  className="text-xs md:text-sm text-primary hover:text-secondary transition"
-                >
-                  {item.value}
-                </a>
+
+      {Loading.isLoadingContact ? (
+        <div className="bg-white hidden md:flex justify-between items-center px-6 py-4 shadow-sm animate-pulse">
+          {/* عنصر نائب للشعار */}
+          <div className="bg-gray-200 rounded-md w-[150px] h-[30px]"></div>
+
+          <div className="flex flex-row md:flex gap-6">
+            {/* عرض 3 عناصر هيكلية */}
+            {[...Array(3)].map((_, i) => (
+              <div key={i} className="flex items-center gap-4">
+                {/* عنصر نائب للأيقونة */}
+                <div className="w-6 h-6 bg-gray-200 rounded-full"></div>
+                <div>
+                  {/* عنصر نائب للعنوان */}
+                  <div className="h-4 bg-gray-200 rounded w-20 mb-1"></div>
+                  {/* عنصر نائب للقيمة */}
+                  <div className="h-4 bg-gray-200 rounded w-32"></div>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div className="bg-white hidden  md:flex justify-between items-center px-6 py-2 shadow-sm">
+          <img
+            src={LogoPrimary}
+            alt="Logo"
+            className="hidden w-[150px] md:inline md:w-[150px]"
+          />
+          <div className="flex flex-row md:flex gap-6">
+            {[
+              {
+                icon: PhoneImage,
+                label: "Téléphone",
+                value: contact?.phone_number,
+                href: `tel:${contact?.phone_number}`,
+                title: "Téléphone",
+              },
+              {
+                icon: locationImage,
+                label: "Adresse",
+                value: "2 Sentier de la Voie Verte - 91400 Orsay",
+                href: "https://maps.app.goo.gl/eCmdzidAhrUDUVRVA",
+                title: "2 Sentier de la Voie Verte - 91400 Orsay",
+              },
+              {
+                icon: ParkingImage,
+                label: "Parking",
+                value: "Du bois des Rames (à 100 m)",
+                href: "https://maps.app.goo.gl/35aKnnsddDNXmDgQ6",
+                title: "Du bois des Rames (à 100 m)",
+              },
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2">
+                <img src={item.icon} alt={item.label} className="w-6 h-6" />
+                <div>
+                  <p className="text-sm text-secondary">{item.label}</p>
+                  <a
+                    href={item.href}
+                    title={item.title}
+                    className="text-xs md:text-sm text-primary hover:text-secondary transition"
+                  >
+                    {item.value}
+                  </a>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Bottom Nav */}
       <div className="bg-primary flex justify-between items-center px-6 py-3">

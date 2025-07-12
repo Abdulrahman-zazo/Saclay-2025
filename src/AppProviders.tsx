@@ -9,29 +9,45 @@ import {
   SpecialtiesContext,
   ContactContext,
   RecommendationContext,
-} from "./Components/Context";
+  LoadingContext,
+} from "./contexts/Context";
 
 function AppProviders({ children }: { children: React.ReactNode }) {
-  const { data: doctors } = useGetAllDoctorsQuery({});
-  const { data: services } = useGetAllServicesQuery({});
-  const { data: specialties } = useGetAllSpecialtiesQuery({});
-  const { data: contact } = useGetContactQuery({});
-  const { data: Recommendation } = useGetALLRecommendationsQuery({});
+  const { data: doctors, isLoading: isLoadingDoctors } = useGetAllDoctorsQuery(
+    {}
+  );
+  const { data: services, isLoading: isLoadingServices } =
+    useGetAllServicesQuery({});
+  const { data: specialties, isLoading: isLoadingSpecialties } =
+    useGetAllSpecialtiesQuery({});
+  const { data: contact, isLoading: isLoadingContact } = useGetContactQuery({});
+  const { data: Recommendation, isLoading: isLoadingRecommendation } =
+    useGetALLRecommendationsQuery({});
 
   return (
-    <SpecialtiesContext.Provider value={specialties?.Specialties ?? []}>
-      <DoctorsContext.Provider value={doctors?.Doctors ?? []}>
-        <ServicesContext.Provider value={services?.Services ?? []}>
-          <ContactContext.Provider value={contact?.Contact ?? null}>
-            <RecommendationContext.Provider
-              value={Recommendation?.Recommendation_messages || []}
-            >
-              {children}
-            </RecommendationContext.Provider>
-          </ContactContext.Provider>
-        </ServicesContext.Provider>
-      </DoctorsContext.Provider>
-    </SpecialtiesContext.Provider>
+    <LoadingContext.Provider
+      value={{
+        isLoadingDoctors,
+        isLoadingServices,
+        isLoadingSpecialties,
+        isLoadingContact,
+        isLoadingRecommendation,
+      }}
+    >
+      <SpecialtiesContext.Provider value={specialties?.Specialties ?? []}>
+        <DoctorsContext.Provider value={doctors?.Doctors ?? []}>
+          <ServicesContext.Provider value={services?.Services ?? []}>
+            <ContactContext.Provider value={contact?.Contact ?? null}>
+              <RecommendationContext.Provider
+                value={Recommendation?.Recommendation_messages || []}
+              >
+                {children}
+              </RecommendationContext.Provider>
+            </ContactContext.Provider>
+          </ServicesContext.Provider>
+        </DoctorsContext.Provider>
+      </SpecialtiesContext.Provider>
+    </LoadingContext.Provider>
   );
 }
 
