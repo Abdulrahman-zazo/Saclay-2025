@@ -19,7 +19,7 @@ function InitialSpecialties() {
             to={`/spécialités/${specialtie.id}`}
             className="btn-specialties"
           >
-            <img src={IconLogo} alt="logo" />
+            <img src={IconLogo} alt="logo" loading="lazy" />
             <h4 className="name-specialtie">{specialtie.name}</h4>
           </Link>
         ))}

@@ -75,7 +75,7 @@ function ContactComponent() {
             key={i}
             className="bg-light-blue p-10 rounded-md flex flex-col items-start w-full"
           >
-            <img src={icon} alt="icon" className="w-7 mb-4" />
+            <img src={icon} alt="icon" className="w-7 mb-4" loading="lazy" />
             <h3 className="text-primary font-secondary text-base md:text-lg font-bold uppercase mb-2">
               {title}
             </h3>

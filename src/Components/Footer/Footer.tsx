@@ -67,7 +67,12 @@ function Footer() {
       <div className="w-[90%] max-w-[1200px] mx-auto flex flex-wrap gap-10 justify-between items-start max-[900px]:grid max-[900px]:grid-cols-2">
         {/* Logo */}
         <div className="col-span-2 flex justify-center md:justify-start">
-          <img src={LogoNyve} alt="Logo" className="w-[180px] md:w-[200px]" />
+          <img
+            src={LogoNyve}
+            alt="Logo"
+            className="w-[180px] md:w-[200px]"
+            loading="lazy"
+          />
         </div>
 
         {/* Important Links */}
@@ -165,7 +170,12 @@ function Footer() {
             className="inline-flex items-center bg-secondary text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-light-blue transition"
           >
             <span>Prise de RDV</span>
-            <img src={doctolibtext2} alt="Doctolib" className="w-[55px] ml-3" />
+            <img
+              src={doctolibtext2}
+              alt="Doctolib"
+              className="w-[55px] ml-3"
+              loading="lazy"
+            />
           </a>
         </div>
       </div>
@@ -213,7 +223,12 @@ function Footer() {
             rel="noopener noreferrer"
             className="w-8 h-8 md:w-10 md:h-10 flex items-center justify-center bg-light-blue rounded-full hover:bg-secondary transition"
           >
-            <img src={doctolib} alt="Doctolib" className="w-3.5 h-3.5" />
+            <img
+              src={doctolib}
+              alt="Doctolib"
+              className="w-3.5 h-3.5"
+              loading="lazy"
+            />
           </a>
         </div>
       </div>

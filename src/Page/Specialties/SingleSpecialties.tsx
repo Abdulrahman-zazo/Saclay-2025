@@ -96,6 +96,7 @@ function SingleSpecialties() {
         <img
           src={specialtyData?.Specialty?.image_url}
           alt={specialtyData?.Specialty?.name}
+          loading="lazy"
           className="w-full max-w-4xl h-auto my-4 rounded-md object-cover"
         />
       </div>

@@ -37,6 +37,7 @@ function InitialDefinition() {
         src={initialdefinition}
         alt="Initial definition"
         className="w-full h-[250px] object-cover mt-6"
+        loading="lazy"
       />
     </div>
   );

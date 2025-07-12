@@ -50,6 +50,7 @@ function Doctors({
               className="relative overflow-hidden bg-light-blue/80 rounded-md flex flex-col items-center text-primary font-secondary pb-5 group"
             >
               <img
+                loading="lazy"
                 src={doctor.image_url}
                 alt={doctor.name}
                 className="w-full md:h-[350px] object-cover"

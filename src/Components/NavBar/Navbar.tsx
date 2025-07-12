@@ -91,6 +91,7 @@ export default function Navbar() {
             src={LogoPrimary}
             alt="Logo"
             className="hidden w-[150px] md:inline md:w-[150px]"
+            loading="lazy"
           />
           <div className="flex flex-row md:flex gap-6">
             {[
@@ -117,7 +118,12 @@ export default function Navbar() {
               },
             ].map((item, i) => (
               <div key={i} className="flex items-center gap-2">
-                <img src={item.icon} alt={item.label} className="w-6 h-6" />
+                <img
+                  src={item.icon}
+                  alt={item.label}
+                  className="w-6 h-6"
+                  loading="lazy"
+                />
                 <div>
                   <p className="text-sm text-secondary">{item.label}</p>
                   <a
@@ -137,7 +143,12 @@ export default function Navbar() {
       {/* Bottom Nav */}
       <div className="bg-primary flex justify-between items-center px-6 py-3">
         <Link to="/" className="md:hidden">
-          <img src={LogoSecondary} alt="Logo" className="w-[150px]" />
+          <img
+            src={LogoSecondary}
+            alt="Logo"
+            className="w-[150px]"
+            loading="lazy"
+          />
         </Link>
 
         <ul className="hidden md:flex items-center gap-6 text-white text-sm md:text-base">
@@ -166,7 +177,12 @@ export default function Navbar() {
           className="hidden md:flex items-center bg-light-blue text-primary text-sm font-medium py-2 px-4 rounded-full hover:bg-light-blue transition"
         >
           <span>Prise de RDV</span>
-          <img src={doctolibtext} alt="" className="w-[45px] ml-2" />
+          <img
+            src={doctolibtext}
+            alt=""
+            className="w-[45px] ml-2"
+            loading="lazy"
+          />
         </a>
 
         {/* Mobile Menu Toggle */}
@@ -208,7 +224,12 @@ export default function Navbar() {
               className="flex items-center bg-primary text-white rounded-full py-2 px-6 mt-4 hover:bg-secondary transition"
             >
               <span>Prise de RDV</span>
-              <img src={doctolibtext2} alt="" className="w-[30px] ml-2" />
+              <img
+                src={doctolibtext2}
+                alt=""
+                className="w-[30px] ml-2"
+                loading="lazy"
+              />
             </a>
           </ul>
         </div>

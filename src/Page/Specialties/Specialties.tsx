@@ -73,12 +73,18 @@ function Specialties() {
             <img
               src={specialtie.image_url}
               alt={specialtie.name}
+              loading="lazy"
               className="w-full h-[250px] object-cover rounded-md max-[900px]:h-[150px]"
             />
 
             {/* Absolute logo */}
             <div className="absolute top-[230px] right-4 w-10 h-10 bg-primary rounded-full hidden max-[900px]:hidden md:flex items-center justify-center">
-              <img src={IconLogo} alt="logo" className="w-6 h-6" />
+              <img
+                src={IconLogo}
+                alt="logo"
+                className="w-6 h-6"
+                loading="lazy"
+              />
             </div>
 
             <h3 className="text-primary text-[24px] max-[900px]:text-[14px] font-medium px-2 pt-3">

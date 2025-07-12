@@ -41,7 +41,12 @@ const RecommendationComponent = () => {
       }}
     >
       <div className="max-w-3xl mx-auto text-center">
-        <img src={comma} alt="comma" className="w-10 mx-auto mb-6" />
+        <img
+          src={comma}
+          alt="comma"
+          className="w-10 mx-auto mb-6"
+          loading="lazy"
+        />
 
         <Swiper
           modules={[Autoplay]}

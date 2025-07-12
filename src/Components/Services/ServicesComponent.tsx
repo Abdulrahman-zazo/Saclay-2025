@@ -225,6 +225,7 @@ function ServicesComponent({
                   src={isSelected ? IconLogoW : IconLogo}
                   alt="icon"
                   className="w-8 h-8 mb-2"
+                  loading="lazy"
                 />
                 <span className={`text-sm font-medium text-center`}>
                   {specialty.name}
